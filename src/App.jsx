@@ -1,3 +1,4 @@
+import Footer from './components/footer'
 import Home from './components/homepage'
 import NavBar from './components/navbar'
 
@@ -6,6 +7,7 @@ const App = () => {
     <>
       <NavBar />
       <Home />
+      <Footer />
     </>
   )
 }

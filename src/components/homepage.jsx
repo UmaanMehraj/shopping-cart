@@ -15,11 +15,11 @@ export default function Home() {
         </div>
       </div>
       <div className='bg-gray-300 min-h-30 w-screen flex gap-4 justify-center items-center'>
-        <div className='m-1 h-8 w-16 bg-white p-4 rounded-lg border-2 flex justify-center items-center transition-all duration-300 ease-in-out hover:bg-black hover:text-white'>
+        <div className='m-1 h-8 w-20 bg-white p-4 rounded-2xl border-2 flex justify-center items-center transition-all duration-300 ease-in-out hover:bg-black hover:text-white'>
           <Link to='/shop'>Shop</Link>
         </div>
-        <div className='m-1 h-8 w-16 bg-white p-4 rounded-lg border-2 flex justify-center items-center transition-all duration-300 ease-in-out hover:bg-black hover:text-white'>
-          <Link to='/cart'>cart</Link>
+        <div className='m-1 h-8 w-20 bg-white p-4 rounded-2xl border-2 flex justify-center items-center transition-all duration-300 ease-in-out hover:bg-black hover:text-white'>
+          <Link to='/cart'>Cart</Link>
         </div>
       </div>
     </>
