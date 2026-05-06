@@ -25,10 +25,10 @@ export default function Home() {
             <div className='pb-10 text-2xl'>Shop & React!</div>
           </div>
           <div className='flex justify-center items-center gap-5 p-2'>
-            <div className='border-1 h-10 w-20 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '>
+            <div className='border h-10 w-20 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '>
               <Link to='/shop'>Shop</Link>
             </div>
-            <div className='border-1 h-10 w-20 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '>
+            <div className='border h-10 w-20 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '>
               <Link to='/cart'>Cart</Link>
             </div>
           </div>

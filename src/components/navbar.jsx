@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-export default function NavBar() {
+export default function NavBar(props) {
   return (
     <>
       <nav className='flex justify-center items-center '>
