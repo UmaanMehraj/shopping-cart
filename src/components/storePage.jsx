@@ -4,11 +4,24 @@ import NavBar from './navbar'
 
 function Card(props) {
   return (
-    <div className='h-80 w-80 bg-white/10 backdrop-blur-3xl rounded-xl text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
-      <div>
-        <img src={props.src} alt={props.alt} />
+    <div className='h-90 w-90 bg-white/20 backdrop-blur-3xl rounded-xl flex-col justify-center items-center text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
+      <div className='flex justify-center items-center'>
+        <img
+          src={props.src}
+          alt={props.alt}
+          className='h-50 w-50 object-contain p-4'
+        />
       </div>
-      <div>{props.title}</div>
+      <div className='flex flex-col justify-center items-center p-4 gap-2 text-white'>
+        <div>{props.title.slice(0, 20) + '...'}</div>
+        <div>Price: ${props.price}</div>
+        <div>Quantity: </div>
+        <div>
+          <button className='border h-10 w-20 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '>
+            Buy
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -39,14 +52,16 @@ export default function Store() {
           delay={0}
         >
           <div className='p-12 grid grid-cols-3 grid-rows-2 justify-items-center content-center gap-10'>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {data.map((elem) => {
+              return (
+                <Card
+                  src={elem.image}
+                  title={elem.title}
+                  alt={elem.title.split(5) + '...'}
+                  price={elem.price}
+                />
+              )
+            })}
           </div>
         </AnimatedContent>
       </>
