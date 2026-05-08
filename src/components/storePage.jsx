@@ -3,6 +3,16 @@ import AnimatedContent from './AnimatedContent'
 import NavBar from './navbar'
 
 function Card(props) {
+  const [cart, addToCart] = useState([])
+  const [quantity, setQuantity] = useState(1)
+  function increaseQuantity() {
+    setQuantity((prev) => prev + 1)
+  }
+  function decreaseQuantity() {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1)
+    }
+  }
   return (
     <div className='h-90 w-90 bg-white/20 backdrop-blur-3xl rounded-xl flex-col justify-center items-center text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
       <div className='flex justify-center items-center'>
@@ -15,7 +25,23 @@ function Card(props) {
       <div className='flex flex-col justify-center items-center p-4 gap-2 text-white'>
         <div>{props.title.slice(0, 20) + '...'}</div>
         <div>Price: ${props.price}</div>
-        <div>Quantity: </div>
+        <div className='bg-white/40 text-black flex justify-center items-center rounded-2xl'>
+          <button
+            className='h-5 w-5 flex justify-center items-center gap-2'
+            onClick={decreaseQuantity}
+          >
+            -
+          </button>
+          <div className='w-10 flex justify-center items-center'>
+            {quantity}
+          </div>
+          <button
+            className='h-5 w-5 flex justify-center items-center'
+            onClick={increaseQuantity}
+          >
+            +
+          </button>
+        </div>
         <div>
           <button className='border h-10 w-20 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '>
             Buy
@@ -51,7 +77,7 @@ export default function Store() {
           threshold={0.6}
           delay={0}
         >
-          <div className='p-12 grid grid-cols-3 grid-rows-2 justify-items-center content-center gap-10'>
+          <div className='p-12 lg:grid lg:grid-cols-3 lg:grid-rows-2 sm:flex sm:flex-col justify-items-center content-center gap-10'>
             {data.map((elem) => {
               return (
                 <Card
