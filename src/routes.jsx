@@ -1,4 +1,5 @@
 import App from './App'
+import Cart from './components/cartPage'
 import ErrorPage from './components/errorPage'
 import Store from './components/storePage'
 
@@ -10,7 +11,7 @@ const routes = [
   },
   {
     path: '/cart',
-    element: <div>Cart</div>,
+    element: <Cart />,
   },
   {
     path: '/shop',
