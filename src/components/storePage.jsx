@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import AnimatedContent from './AnimatedContent'
 import NavBar from './navbar'
+import { FallingLines } from 'react-loader-spinner'
+import ErrorPage from './errorPage'
 
+export const cart = []
 function Card(props) {
-  const [cart, addToCart] = useState([])
   const [quantity, setQuantity] = useState(1)
   function increaseQuantity() {
     setQuantity((prev) => prev + 1)
@@ -12,6 +14,10 @@ function Card(props) {
     if (quantity > 1) {
       setQuantity((prev) => prev - 1)
     }
+  }
+  function updateCart(e) {
+    cart.push(e.target)
+    console.log(cart)
   }
   return (
     <div className='h-90 w-90 bg-white/20 backdrop-blur-3xl rounded-xl flex-col justify-center items-center text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
@@ -43,8 +49,11 @@ function Card(props) {
           </button>
         </div>
         <div>
-          <button className='border h-10 w-20 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '>
-            Buy
+          <button
+            onClick={updateCart}
+            className='border h-10 w-40 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '
+          >
+            Add to Cart
           </button>
         </div>
       </div>
@@ -54,13 +63,36 @@ function Card(props) {
 
 export default function Store() {
   const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then((response) => response.json())
       .then((data) => setData(data))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false))
   })
-
+  if (loading) {
+    return (
+      <div className='flex justify-center align-center '>
+        <FallingLines
+          color='##8b5cf6'
+          width='100'
+          visible={true}
+          ariaLabel='falling-circles-loading'
+        />
+      </div>
+    )
+  }
+  if (error) {
+    return (
+      <>
+        <ErrorPage />
+        <p>Error: {error}</p>
+      </>
+    )
+  }
   return (
     data && (
       <>
