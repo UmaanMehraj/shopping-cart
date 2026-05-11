@@ -4,8 +4,7 @@ import NavBar from './navbar'
 import { FallingLines } from 'react-loader-spinner'
 import ErrorPage from './errorPage'
 
-export const cart = []
-function Card(props) {
+export function Card(props) {
   const [quantity, setQuantity] = useState(1)
   function increaseQuantity() {
     setQuantity((prev) => prev + 1)
@@ -14,10 +13,6 @@ function Card(props) {
     if (quantity > 1) {
       setQuantity((prev) => prev - 1)
     }
-  }
-  function updateCart(e) {
-    cart.push(e.target)
-    console.log(cart)
   }
   return (
     <div className='h-90 w-90 bg-white/20 backdrop-blur-3xl rounded-xl flex-col justify-center items-center text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
@@ -50,7 +45,7 @@ function Card(props) {
         </div>
         <div>
           <button
-            onClick={updateCart}
+            onClick={props.addToCart()}
             className='border h-10 w-40 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '
           >
             Add to Cart
@@ -61,7 +56,7 @@ function Card(props) {
   )
 }
 
-export default function Store() {
+export default function Store(props) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -75,7 +70,7 @@ export default function Store() {
   })
   if (loading) {
     return (
-      <div className='flex justify-center align-center '>
+      <div className=' h-full flex justify-center align-center'>
         <FallingLines
           color='##8b5cf6'
           width='100'
@@ -113,6 +108,7 @@ export default function Store() {
             {data.map((elem) => {
               return (
                 <Card
+                  cart={props.cart}
                   src={elem.image}
                   title={elem.title}
                   alt={elem.title.split(5) + '...'}
