@@ -15,19 +15,19 @@ export function Card(props) {
     }
   }
 
-  const[itemIds, setItemIds] = useState(()=>{
-  const saved = localStorage.getItem('storedIds')
-    return (saved ? JSON.parse(saved) : [])
+  const [itemIds, setItemIds] = useState(() => {
+    const saved = localStorage.getItem('storedIds')
+    return saved ? JSON.parse(saved) : []
   })
-   useEffect(()=>{
+  useEffect(() => {
     localStorage.setItem('storedIds', JSON.stringify(itemIds))
-   }, [itemIds])
+  }, [itemIds])
 
-   function addItem(id){
-    if(!itemIds.includes(id)){
+  function addItem(id) {
+    if (!itemIds.includes(id)) {
       setItemIds([...itemIds, id])
     }
-   }
+  }
   return (
     <div className='h-90 w-90 bg-white/20 backdrop-blur-3xl rounded-xl flex-col justify-center items-center text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
       <div className='flex justify-center items-center'>
@@ -59,7 +59,7 @@ export function Card(props) {
         </div>
         <div>
           <button
-            onClick={()=>addItem(props.id)}
+            onClick={() => addItem(props.id)}
             className='border h-10 w-40 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '
           >
             Add to Cart
@@ -70,7 +70,7 @@ export function Card(props) {
   )
 }
 
-export default function Store(props) {
+export default function Store() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -122,8 +122,8 @@ export default function Store(props) {
             {data.map((elem) => {
               return (
                 <Card
-                  key = {elem.id}
-                  id = {elem.id}
+                  key={elem.id}
+                  id={elem.id}
                   src={elem.image}
                   title={elem.title}
                   alt={elem.title.split(5) + '...'}

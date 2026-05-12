@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import AnimatedContent from './AnimatedContent'
 import NavBar from './navbar'
 
@@ -12,8 +13,12 @@ function CartCard(props) {
         />
       </div>
       <div className='flex flex-col justify-center items-center p-4 gap-2 text-white'>
+        <div>{props.title.slice(0, 20) + '...'}</div>
+        <div>Price: ${props.price}</div>{' '}
+      </div>
+      <div className='flex flex-col justify-center items-center p-4 gap-2 text-white'>
         <div>
-          <button className='border h-10 w-40 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '>
+          <button className='border h-10 w-40 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white hover:-translate-y-1 hover:scale-105'>
             Buy
           </button>
         </div>
@@ -23,6 +28,19 @@ function CartCard(props) {
 }
 
 export default function Cart() {
+  const [cartItems, setCartItems] = useState([])
+
+  useEffect(() => {
+    const storedIds = JSON.parse(localStorage.getItem('storedIds') || '[]')
+
+    fetch('https://fakestoreapi.com/products')
+      .then((res) => res.json())
+      .then((data) => {
+        const filtered = data.filter((item) => storedIds.includes(item.id))
+        setCartItems(filtered)
+      })
+  }, [])
+
   return (
     <>
       <NavBar />
@@ -38,11 +56,20 @@ export default function Cart() {
         threshold={0.6}
         delay={0}
       >
-        <div className='h-full w-full p-20 text-2xl text-white flex flex-col gap-2 justify-center items-center'>
-          <CartCard />
-          <CartCard />
-          <CartCard />
-          <CartCard />
+        <div className='h-full w-full p-20 text-2xl text-white flex flex-col gap-8 justify-center items-center'>
+          {cartItems.length === 0 ? (
+            <div>Your cart is empty</div>
+          ) : (
+            cartItems.map((item) => (
+              <CartCard
+                key={item.id}
+                src={item.image}
+                alt={item.title}
+                title={item.title}
+                price={item.price}
+              />
+            ))
+          )}
         </div>
       </AnimatedContent>
     </>
