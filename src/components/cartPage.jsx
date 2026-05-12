@@ -4,12 +4,12 @@ import NavBar from './navbar'
 
 function CartCard(props) {
   return (
-    <div className='h-100 w-100 bg-white/20 backdrop-blur-3xl rounded-xl flex-col justify-center items-center text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
+    <div className='h-80 w-80 md:h-100 md:w-100 bg-white/20 m-4 md:m-0 lg:m-0 backdrop-blur-3xl rounded-xl flex-col justify-center items-center text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
       <div className='flex justify-center items-center'>
         <img
           src={props.src}
           alt={props.alt}
-          className='h-50 w-50 object-contain p-4'
+          className='h-30 w-30 md:h-50 md:w-50 object-contain p-4'
         />
       </div>
       <div className='flex flex-col justify-center items-center p-4 gap-2 text-white'>
@@ -18,7 +18,7 @@ function CartCard(props) {
       </div>
       <div className='flex flex-col justify-center items-center p-4 gap-2 text-white'>
         <div>
-          <button className='border h-10 w-40 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white hover:-translate-y-1 hover:scale-105'>
+          <button className='border h-10 w-30 md:w-40 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white hover:-translate-y-1 hover:scale-105'>
             Buy
           </button>
         </div>
