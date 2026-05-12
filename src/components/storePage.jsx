@@ -29,12 +29,12 @@ export function Card(props) {
     }
   }
   return (
-    <div className='h-90 w-90 bg-white/20 backdrop-blur-3xl rounded-xl flex-col justify-center items-center text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
+    <div className='h-70 w-70 md:h-90 md:w-90 bg-white/20 m-4 md:m-0 lg:m-0 backdrop-blur-3xl rounded-xl flex-col justify-center items-center text-black border transition duration-600 ease-in-ot hover:-translate-y-1'>
       <div className='flex justify-center items-center'>
         <img
           src={props.src}
           alt={props.alt}
-          className='h-50 w-50 object-contain p-4'
+          className='h-30 w-30 md:h-50 md:w-50 object-contain p-4'
         />
       </div>
       <div className='flex flex-col justify-center items-center p-4 gap-2 text-white'>
@@ -60,7 +60,7 @@ export function Card(props) {
         <div>
           <button
             onClick={() => addItem(props.id)}
-            className='border h-10 w-40 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '
+            className='border h-10 w-30 md:w-40 flex justify-center items-center rounded-3xl transition duration-500 ease-in-out hover:bg-violet-500 hover:text-white  hover:-translate-y-1 hover:scale-105 '
           >
             Add to Cart
           </button>
@@ -118,7 +118,7 @@ export default function Store() {
           threshold={0.6}
           delay={0}
         >
-          <div className='p-12 lg:grid lg:grid-cols-3 lg:grid-rows-2 sm:flex sm:flex-col justify-items-center content-center gap-10'>
+          <div className='p-6 md:p-8 lg:p-12 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 lg:grid-rows-2 flex flex-col justify-center items-center xl:grid-cols-3 md:justify-items-center md:content-center gap-10'>
             {data.map((elem) => {
               return (
                 <Card
